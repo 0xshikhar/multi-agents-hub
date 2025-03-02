@@ -1,12 +1,12 @@
+'use client';
 import {
   TRANSACTIONS_ENDPOINT,
   ACCOUNTS_ENDPOINT
 } from '@multiversx/sdk-dapp/apiCalls/endpoints';
-import { useGetNetworkConfig } from '@multiversx/sdk-dapp/hooks/useGetNetworkConfig';
-import { ExplorerLink } from '@multiversx/sdk-dapp/UI/ExplorerLink';
-import { Label } from 'components/Label';
-import { FormatAmount } from 'components/sdkDappComponents';
-import { SignedTransactionType } from 'types';
+import { useGetNetworkConfig } from '@/hooks';
+import { SignedTransactionType } from '@/types';
+import { FormatAmount, ExplorerLink } from '@/components/sdkDappComponents';
+import { Label } from '@/components/Label';
 
 export const TransactionOutput = ({
   transaction
@@ -14,6 +14,7 @@ export const TransactionOutput = ({
   transaction: SignedTransactionType;
 }) => {
   const { network } = useGetNetworkConfig();
+
   const decodedData = transaction.data
     ? Buffer.from(transaction.data, 'base64').toString('ascii')
     : 'N/A';
@@ -37,7 +38,6 @@ export const TransactionOutput = ({
           {transaction.receiver}
         </ExplorerLink>
       </p>
-
       <p>
         <Label>Amount: </Label>
         <FormatAmount
@@ -48,12 +48,10 @@ export const TransactionOutput = ({
         />
       </p>
       <p>
-        <Label>Gas price: </Label>
-        {transaction.gasPrice}
+        <Label>Gas price: </Label> {transaction.gasPrice}
       </p>
       <p>
-        <Label>Gas limit: </Label>
-        {transaction.gasLimit}
+        <Label>Gas limit: </Label> {transaction.gasLimit}
       </p>
       <p className='whitespace-nowrap'>
         <Label>Data: </Label> {decodedData}

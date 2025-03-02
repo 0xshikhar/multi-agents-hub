@@ -1,4 +1,5 @@
-import HeartIcon from 'assets/img/heart.svg?react';
+import heartIcon from '../../../../public/assets/img/heart.svg';
+import Image from 'next/image';
 
 export const Footer = () => {
   return (
@@ -15,7 +16,7 @@ export const Footer = () => {
           className='flex items-center text-sm hover:underline'
           href='https://multiversx.com/'
         >
-          Made with <HeartIcon className='mx-1 fill-gray-400' /> by the
+          Made with <Image src={heartIcon} alt='love' className='mx-1' /> by the
           MultiversX team
         </a>
       </div>

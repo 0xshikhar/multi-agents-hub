@@ -1,7 +1,6 @@
-import { Transaction, TransactionsDisplayInfoType } from 'types';
+import { Transaction, TransactionsDisplayInfoType } from '@/types';
 
 import { refreshAccount, sendTransactions } from './sdkDappHelpers';
-import { isSafari } from 'localConstants';
 
 type SignAndSendTransactionsProps = {
   transactions: Transaction[];
@@ -20,11 +19,7 @@ export const signAndSendTransactions = async ({
     transactions,
     transactionsDisplayInfo,
     redirectAfterSign: false,
-    callbackRoute,
-    // NOTE: performing async calls (eg: `await refreshAccount()`) before opening a new tab
-    // can cause the new tab to be blocked by Safari's popup blocker.
-    // To support this feature, we can set `hasConsentPopup` to `true`
-    hasConsentPopup: isSafari
+    callbackRoute
   });
 
   return sessionId;

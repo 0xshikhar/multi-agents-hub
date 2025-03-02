@@ -1,58 +1,44 @@
-import { Button } from 'components/Button';
-import { MxLink } from 'components/MxLink';
-import { environment } from 'config';
-import { logout } from 'helpers';
-import { useGetIsLoggedIn } from 'hooks';
-import { RouteNamesEnum } from 'localConstants';
-import MultiversXLogo from '../../../assets/img/multiversx-logo.svg?react';
-import { useMatch } from 'react-router-dom';
-
-const callbackUrl = `${window.location.origin}/unlock`;
-const onRedirect = undefined; // use this to redirect with useNavigate to a specific page after logout
-const shouldAttemptReLogin = false; // use for special cases where you want to re-login after logout
-const options = {
-  /*
-   * @param {boolean} [shouldBroadcastLogoutAcrossTabs=true]
-   * @description If your dApp supports multiple accounts on multiple tabs,
-   * this param will broadcast the logout event across all tabs.
-   */
-  shouldBroadcastLogoutAcrossTabs: true,
-  /*
-   * @param {boolean} [hasConsentPopup=false]
-   * @description Set it to true if you want to perform async calls before logging out on Safari.
-   * It will open a consent popup for the user to confirm the action before leaving the page.
-   */
-  hasConsentPopup: false
-};
+'use client';
+import { Button } from '@/components/Button';
+import { MxLink } from '@/components/MxLink';
+import { environment } from '@/config';
+import { logout } from '@/helpers';
+import { useGetIsLoggedIn } from '@/hooks';
+import { RouteNamesEnum } from '@/localConstants';
+import mvxLogo from '../../../../public/assets/img/multiversx-logo.svg';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { getWindowLocation } from '@/utils/sdkDappUtils';
+import { usePathname } from 'next/navigation';
 
 export const Header = () => {
+  const router = useRouter();
   const isLoggedIn = useGetIsLoggedIn();
-  const isUnlockRoute = Boolean(useMatch(RouteNamesEnum.unlock));
+  const pathname = usePathname();
+
+  const isUnlockRoute = Boolean(pathname === RouteNamesEnum.unlock);
 
   const ConnectButton = isUnlockRoute ? null : (
     <MxLink to={RouteNamesEnum.unlock}>Connect</MxLink>
   );
 
+  const onRedirect = () => {
+    router.replace(RouteNamesEnum.unlock);
+  };
+
   const handleLogout = () => {
+    const { href } = getWindowLocation();
     sessionStorage.clear();
-    logout(
-      callbackUrl,
-      /*
-       * following are optional params. Feel free to remove them in your implementation
-       */
-      onRedirect,
-      shouldAttemptReLogin,
-      options
-    );
+    logout(href, onRedirect, false);
   };
 
   return (
     <header className='flex flex-row align-center justify-between pl-6 pr-6 pt-6'>
       <MxLink
-        className='flex items-center justify-between'
         to={isLoggedIn ? RouteNamesEnum.dashboard : RouteNamesEnum.home}
+        className='flex items-center justify-between'
       >
-        <MultiversXLogo className='w-full h-6' />
+        <Image src={mvxLogo} alt='logo' className='w-full h-6' />
       </MxLink>
 
       <nav className='h-full w-full text-sm sm:relative sm:left-auto sm:top-auto sm:flex sm:w-auto sm:flex-row sm:justify-end sm:bg-transparent'>

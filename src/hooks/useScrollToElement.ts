@@ -1,11 +1,15 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { getWindowLocation } from '@/utils/sdkDappUtils';
 
 export const useScrollToElement = () => {
-  const location = useLocation();
+  const { hash } = getWindowLocation();
 
   useEffect(() => {
-    const [, anchor] = location.hash.split('#');
+    if (!hash) {
+      return;
+    }
+
+    const [, anchor] = hash.split('#');
 
     if (!anchor) {
       return;
@@ -18,5 +22,5 @@ export const useScrollToElement = () => {
     }
 
     element.scrollIntoView();
-  }, [location.hash]);
+  }, [hash]);
 };

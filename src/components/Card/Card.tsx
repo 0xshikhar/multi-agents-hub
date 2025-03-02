@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { WithClassnameType } from 'types';
+import { WithClassnameType } from '@/types';
 
 interface CardType extends PropsWithChildren, WithClassnameType {
   title: string;
@@ -19,7 +19,7 @@ export const Card = (props: CardType) => {
       data-testid={props['data-testid']}
       id={anchor}
     >
-      <h2 className='flex text-xl font-medium group'>
+      <h2 className='flex text-xl group'>
         {title}
         <a
           href={reference}

@@ -1,3 +1,4 @@
+'use client';
 export { useGetAccount } from '@multiversx/sdk-dapp/hooks/account/useGetAccount';
 export { useGetAccountInfo } from '@multiversx/sdk-dapp/hooks/account/useGetAccountInfo';
 export { useGetLoginInfo } from '@multiversx/sdk-dapp/hooks/account/useGetLoginInfo';

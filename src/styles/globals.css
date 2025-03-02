@@ -1,9 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Add the group-hover plugin */
 @layer utilities {
   .group:hover .group-hover\:block {
     display: block;

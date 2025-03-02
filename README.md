@@ -1,73 +1,64 @@
-# @multiversx/template-dapp
+# **MultiversX dApp based on Next.js and @multiversx/sdk-dapp**
 
-The **MultiversX dApp Template**, built using [React.js](https://reactjs.org/) and [Typescript](https://www.typescriptlang.org/).
-It's a basic implementation of [@multiversx/sdk-dapp](https://www.npmjs.com/package/@multiversx/sdk-dapp), providing the basics for MultiversX authentication and TX signing.
+See [Template dApp Next.js](https://template-dapp-nextjs.multiversx.com/) for live demo.
 
-See [Dapp template](https://template-dapp.multiversx.com/) for live demo.
+### Setup next.config.js.
 
-## Requirements
+See [documentation](https://nextjs.org/docs/pages/api-reference/next-config-js/transpilePackages)
 
-- Node.js version 16.20.0+
-- Npm version 8.19.4+
+```js
+   /** @type {import('next').NextConfig} */
+   const nextConfig = {
+      transpilePackages: ['@multiversx/sdk-dapp']
+   };
+
+   module.exports = nextConfig;
+```
+
+---
 
 ## Getting Started
 
-The dapp is a client side only project and is built using the [Create React App](https://create-react-app.dev) scripts.
-
-### Instalation and running
-
-### Step 1. Install modules
-
-From a terminal, navigate to the project folder and run:
+Run the development server on the desired network:
 
 ```bash
-yarn install
+yarn start-testnet
 ```
 
-### Step 2. Running in development mode
-
-In the project folder run:
+or
 
 ```bash
-yarn start:devnet
-yarn start:testnet
-yarn start:mainnet
+yarn start-devnet
 ```
 
-This will start the React app in development mode, using the configs found in the `vite.config.ts` file.
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-> **Note:** 
-While in development, to test the passkeys provider use the following command:
-`open -a Google\ Chrome --args --ignore-certificate-errors --ignore-urlfetcher-cert-requests`
-Make sure to close all instances of Chrome after the development session.
-
-### Step 3. Build for testing and production use
-
-A build of the app is necessary to deploy for testing purposes or for production use.
-To build the project run:
+or
 
 ```bash
-yarn build:devnet
-yarn build:testnet
-yarn build:mainnet
+yarn start-mainnet
 ```
 
-## Roadmap
+Run a production build:
 
-See the [open issues](https://github.com/multiversx/mx-template-dapp/issues) for a list of proposed features (and known issues).
+```bash
+yarn build-testnet
+```
 
-## Contributing
+or
 
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+```bash
+yarn build-devnet
+```
 
-One can contribute by creating _pull requests_, or by opening _issues_ for discovered bugs or desired features.
+or
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+```bash
+yarn build-mainnet
+```
+
+and then
+
+```bash
+yarn start
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

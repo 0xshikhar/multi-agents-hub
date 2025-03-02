@@ -1,7 +1,7 @@
-import { ContractAddress } from 'components/ContractAddress';
-import { Label } from 'components/Label';
-import { SignedTransactionType } from 'types';
+import { ContractAddress } from '@/components/ContractAddress';
+import { SignedTransactionType } from '@/types';
 import { TransactionsOutput } from './TransactionsOutput';
+import { Label } from '@/components/Label';
 
 type PingPongOutputType = {
   timeRemaining: string;

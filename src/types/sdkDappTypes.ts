@@ -6,7 +6,7 @@ export {
 export type {
   RouteType,
   InterpretedTransactionType
-} from '@multiversx/sdk-dapp/types/index';
+} from '@multiversx/sdk-dapp/types';
 export type { ServerTransactionType } from '@multiversx/sdk-dapp/types/serverTransactions.types';
 export type { WithClassnameType } from '@multiversx/sdk-dapp/UI/types';
 export type {

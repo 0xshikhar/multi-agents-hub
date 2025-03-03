@@ -1,5 +1,5 @@
 import { SessionEnum } from '@/localConstants/session';
-import { getBatchTransactions } from '../helpers';
+import { getBatchTransactions } from '.';
 import { refreshAccount } from '@/utils/sdkDappUtils';
 import { sendBatchTransactions } from '@/services/sdkDappServices';
 import { SendTransactionProps } from '../types';
